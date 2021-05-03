@@ -14,7 +14,7 @@ spring:
 #Eureka Client
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://localhost:9091/eureka/
     healthcheck:
       enabled: true
@@ -22,11 +22,11 @@ eureka:
 zuul:
   routes:
     #routing id
-    coffee-order :
+    coffeeOrder :
       #zuul context root
       path: /coffeeOrder/**
-        #spring application name
-       serviceId: msa-service-coffee-order
+      #spring application name
+      serviceId: msa-service-coffee-order
 
     coffeeMember:
       path: /coffeeMember/**
