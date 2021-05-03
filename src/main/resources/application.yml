@@ -1,0 +1,37 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: msa-architecture-zuul-server
+
+#Config server
+  cloud:
+    config:
+      uri: http//:localhost:8888
+      name: msa-architecture-config-server
+
+#Eureka Client
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9091/eureka/
+    healthcheck:
+      enabled: true
+
+zuul:
+  routes:
+    #routing id
+    coffee-order :
+      #zuul context root
+      path: /coffeeOrder/**
+        #spring application name
+       serviceId: msa-service-coffee-order
+
+    coffeeMember:
+      path: /coffeeMember/**
+      serviceId: msa-service-coffee-member
+
+    coffeeStatus:
+      path: /coffeeStatus/**
+      serviceId: msa-service-coffee-status
